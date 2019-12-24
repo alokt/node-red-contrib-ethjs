@@ -103,7 +103,9 @@ const input = (node, data, config) => {
                 node.send(data);
             }
 
-            if (!config.wait) { return cb() }
+            if (!config.wait) {
+                return cb(null, transAddr);
+            }
             waitTransaction(eth, transAddr, cb)
 
         }).catch((err) => { node.warn(err) })
