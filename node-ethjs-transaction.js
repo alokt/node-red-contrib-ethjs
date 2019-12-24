@@ -155,7 +155,7 @@ const waitTransaction = (eth, address, callback, _max) => {
     if (_max === undefined) { max = 10; }
     eth.getTransactionByHash(address)
         .then((t) => {
-            if (t.blockNumber) { return callback(undefined, t); }
+            if (t != null && t.blockNumber) { return callback(undefined, t); }
             setTimeout(() => { waitTransaction(eth, address, callback, _max - 1) }, 1000)
         })
         .catch((err) => { return callback(err) })
